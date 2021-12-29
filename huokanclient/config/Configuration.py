@@ -28,3 +28,6 @@ class Configuration:
         return self._config.get(
             "wow_path", "C:\\Program Files (x86)\\World of Warcraft\\_retail_"
         )
+
+    def set_wow_path(self, wow_path: str) -> None:
+        self._config["wow_path"] = wow_path

@@ -1,5 +1,6 @@
 import wx
 from huokanclient.config.Configuration import Configuration
+from huokanclient.gui.Modules import Modules
 
 from huokanclient.gui.WoWDirPicker import WoWDirPicker
 
@@ -12,9 +13,8 @@ class RootFrame(wx.Frame):
         panel = wx.Panel(self)
         sizer = wx.BoxSizer(wx.VERTICAL)
 
-        self.wow_path_ctrl = WoWDirPicker(panel)
-        self.wow_path_ctrl.set_path(config.get_wow_path())
+        self._modules = Modules(panel, config)
 
-        sizer.Add(self.wow_path_ctrl)
+        sizer.Add(self._modules, flag=wx.EXPAND)
 
         panel.SetSizer(sizer)
