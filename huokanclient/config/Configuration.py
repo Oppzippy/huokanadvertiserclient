@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-import os
 
 
 class Configuration:
@@ -9,7 +8,7 @@ class Configuration:
         self._config: dict
 
         path = Path(file_path)
-        path.parent.mkdir(parents=True)
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.touch(exist_ok=True)
 
         self.reload()
