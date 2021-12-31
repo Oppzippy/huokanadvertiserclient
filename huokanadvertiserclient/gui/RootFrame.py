@@ -1,8 +1,8 @@
 import wx
-from huokanclient.config.Configuration import Configuration
-from huokanclient.gui.Modules import Modules
+from huokanadvertiserclient.config.Configuration import Configuration
+from huokanadvertiserclient.gui.Modules import Modules
 
-from huokanclient.gui.WoWDirPicker import WoWDirPicker
+from huokanadvertiserclient.gui.WoWDirPicker import WoWDirPicker
 
 
 class RootFrame(wx.Frame):

@@ -1,8 +1,8 @@
 import wx
 from rx.core.observable.observable import Observable
 
-from huokanclient.gui.WoWDirPicker import WoWDirPicker
-from huokanclient.config.Configuration import Configuration
+from huokanadvertiserclient.gui.WoWDirPicker import WoWDirPicker
+from huokanadvertiserclient.config.Configuration import Configuration
 
 
 class Settings(wx.Panel):

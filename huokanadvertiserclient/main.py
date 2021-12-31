@@ -1,7 +1,7 @@
 from os import environ
 import wx
-from huokanclient.gui.RootFrame import RootFrame
-from huokanclient.config.Configuration import Configuration
+from huokanadvertiserclient.gui.RootFrame import RootFrame
+from huokanadvertiserclient.config.Configuration import Configuration
 from pathlib import Path
 
 config_dir: Path

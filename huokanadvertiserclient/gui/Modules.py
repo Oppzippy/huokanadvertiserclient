@@ -1,7 +1,7 @@
 import wx
-from huokanclient.config.Configuration import Configuration
-from huokanclient.gui.AddOn import AddOn
-from huokanclient.gui.Settings import Settings
+from huokanadvertiserclient.config.Configuration import Configuration
+from huokanadvertiserclient.gui.AddOn import AddOn
+from huokanadvertiserclient.gui.Settings import Settings
 
 
 class Modules(wx.Panel):
