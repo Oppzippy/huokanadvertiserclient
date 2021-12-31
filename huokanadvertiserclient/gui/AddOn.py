@@ -25,7 +25,11 @@ class AddOn(wx.Panel):
         toc_path = path.joinpath(
             "Interface", "AddOns", "HuokanAdvertiserTools", "HuokanAdvertiserTools.toc"
         )
+        if not toc_path.is_file():
+            self._current_version.SetLabel("Not Installed")
+            return
+
         toc = toc_path.read_text()
         matches = re.findall("^## Version: (.*)$", toc, re.MULTILINE)
-        version = matches[-1] if len(matches) > 0 else "Not Installed"
+        version = matches[-1] if len(matches) > 0 else "Corrupted Install"
         self._current_version.SetLabel(f"Installed Version: {version}")

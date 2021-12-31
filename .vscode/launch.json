@@ -8,7 +8,7 @@
 			"name": "huokanclient",
 			"type": "python",
 			"request": "launch",
-			"program": "huokanclient/main.py",
+			"program": "huokanadvertiserclient/main.py",
 			"console": "integratedTerminal"
 		}
 	]

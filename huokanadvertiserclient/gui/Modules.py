@@ -13,9 +13,7 @@ class Modules(wx.Panel):
         self._settings = Settings(self._notebook, config)
 
         self._notebook.AddPage(self._settings, "Settings")
-        self._notebook.AddPage(
-            AddOn(self._notebook, self._settings.get_wow_path_observable()), "AddOn"
-        )
+        self._notebook.AddPage(AddOn(self._notebook, config.wow_path), "AddOn")
         # self._notebook.AddPage(
         #     GuildBank(self._notebook, ),
         #     "Guild Bank",
