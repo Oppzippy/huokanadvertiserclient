@@ -18,13 +18,10 @@ class Login(wx.Panel):
         self.SetSizer(sizer)
 
         self._server = DiscordOAuthListener(config)
+        self.Bind(wx.EVT_WINDOW_DESTROY, lambda _: self._server.destroy())
 
     def _open_login_page(self, _):
         webbrowser.open(
             f"{self._config.api_base_url}/authorization/discord/redirect?redirectUrl={self._server.get_redirect_url()}",
             autoraise=True,
         )
-
-    def Destroy(self):
-        self._server.destroy()
-        return super().Destroy()
