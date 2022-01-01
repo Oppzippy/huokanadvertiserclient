@@ -2,12 +2,10 @@ from rx.subject.subject import Subject
 import wx
 from pathlib import Path
 from rx.core.observable.observable import Observable
-from rx.subject.behaviorsubject import BehaviorSubject
-
-from huokanadvertiserclient.config.Configuration import Configuration
+from huokanadvertiserclient.gui.framework.ReactivePanel import ReactivePanel
 
 
-class WoWDirPicker(wx.Panel):
+class WoWDirPicker(ReactivePanel):
     def __init__(self, parent, wow_path_subject: Subject):
         super().__init__(parent)
         self._path_subject = wow_path_subject
@@ -20,12 +18,14 @@ class WoWDirPicker(wx.Panel):
         self._dir_picker.Bind(wx.EVT_DIRPICKER_CHANGED, self._on_change)
         self.SetSizer(sizer)
 
-        self._path_subject.subscribe(
-            on_next=lambda wow_path: self._dir_picker.SetPath(wow_path)
+        self.bind_observable(wow_path_subject, self._dir_picker.SetPath)
+        self.bind_observer(
+            wow_path_subject,
+            self._dir_picker,
+            lambda path: self._dir_picker.SetPath(path or ""),
         )
 
     def set_path(self, path: str) -> None:
-        self._dir_picker.SetPath(path or "")
         self._on_change(path)
 
     def get_path(self) -> str:

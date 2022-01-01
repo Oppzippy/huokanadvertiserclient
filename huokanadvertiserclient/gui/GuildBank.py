@@ -3,8 +3,10 @@ from datetime import datetime
 
 from rx.core.observable.observable import Observable
 
+from huokanadvertiserclient.gui.framework.ReactivePanel import ReactivePanel
 
-class GuildBank(wx.Panel):
+
+class GuildBank(ReactivePanel):
     def __init__(self, parent, guild_bank_upload: Observable):
         super().__init__(parent)
 
@@ -13,7 +15,7 @@ class GuildBank(wx.Panel):
 
         sizer.Add(self._last_upload, flag=wx.EXPAND)
         self.SetSizer(sizer)
-        guild_bank_upload.subscribe(on_next=self._update_last_upload)
+        self.bind_observable(guild_bank_upload, self._update_last_upload)
 
     def _update_last_upload(self, _) -> None:
         now = datetime.now()

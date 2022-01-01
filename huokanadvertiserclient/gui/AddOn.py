@@ -5,8 +5,10 @@ from typing import Union
 
 from rx.core.observable.observable import Observable
 
+from huokanadvertiserclient.gui.framework.ReactivePanel import ReactivePanel
 
-class AddOn(wx.Panel):
+
+class AddOn(ReactivePanel):
     def __init__(self, parent, wow_path: Observable):
         super().__init__(parent)
 
@@ -15,7 +17,7 @@ class AddOn(wx.Panel):
 
         sizer.Add(self._current_version, flag=wx.EXPAND)
         self.SetSizer(sizer)
-        wow_path.subscribe(on_next=self._update_version_text)
+        self.bind_observable(wow_path, self._update_version_text)
 
     def _update_version_text(self, wow_path: Union[str, None]) -> None:
         if wow_path is None:
