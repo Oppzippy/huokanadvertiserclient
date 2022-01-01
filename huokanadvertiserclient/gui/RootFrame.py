@@ -9,10 +9,17 @@ class RootFrame(wx.Frame):
     def __init__(self, config: Configuration):
         super().__init__(parent=None, title="Huokan Client")
         self._config = config
+        self._login: Union[Login, None] = None
+        self._modules: Union[Modules, None] = None
         config.api_key.subscribe(on_next=self._on_api_key_change)
 
     def _on_api_key_change(self, api_key: Union[str, None]):
+        if self._login is not None and api_key is None:
+            return
         self.DestroyChildren()
+        self._login = None
+        self._modules = None
+
         sizer = wx.BoxSizer(wx.VERTICAL)
 
         if api_key is None:
