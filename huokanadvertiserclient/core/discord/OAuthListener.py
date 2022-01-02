@@ -1,10 +1,9 @@
-from rx.subject.subject import Subject
 from huokan_client import Client
 from huokanadvertiserclient.config.Configuration import Configuration
 from huokanadvertiserclient.core.discord.OAuthServer import OAuthServer
 
 
-class DiscordOAuthListener:
+class OAuthListener:
     def __init__(self, config: Configuration) -> None:
         client = Client(base_url=config.api_base_url, timeout=30, verify_ssl=True)
         self._port = 52602

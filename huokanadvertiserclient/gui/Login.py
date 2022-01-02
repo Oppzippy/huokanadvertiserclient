@@ -1,7 +1,9 @@
 import webbrowser
 import wx
 from huokanadvertiserclient.config.Configuration import Configuration
-from huokanadvertiserclient.core.DiscordOAuthListener import DiscordOAuthListener
+from huokanadvertiserclient.core.discord.OAuthListener import (
+    OAuthListener,
+)
 
 
 class Login(wx.Panel):
@@ -17,7 +19,7 @@ class Login(wx.Panel):
         sizer.Add(self._login_button, flag=wx.EXPAND)
         self.SetSizer(sizer)
 
-        self._server = DiscordOAuthListener(config)
+        self._server = OAuthListener(config)
         self.Bind(wx.EVT_WINDOW_DESTROY, lambda _: self._server.destroy())
 
     def _open_login_page(self, _):
