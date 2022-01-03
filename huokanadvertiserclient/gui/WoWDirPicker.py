@@ -22,7 +22,8 @@ class WoWDirPicker(ReactivePanel):
         self.bind_observer(
             wow_path_subject,
             self._dir_picker,
-            lambda path: self._dir_picker.SetPath(path or ""),
+            wx.EVT_DIRPICKER_CHANGED,
+            get_new_value=self.get_path,
         )
 
     def set_path(self, path: str) -> None:
@@ -42,8 +43,7 @@ class WoWDirPicker(ReactivePanel):
 
     def _on_change(self, _: str) -> None:
         if self.is_path_valid_wow_dir():
-            self._path_subject.on_next(self.get_path())
+            pass
         else:
-            self._path_subject.on_next(None)
             # TODO show some indocator of invalid dir
             pass

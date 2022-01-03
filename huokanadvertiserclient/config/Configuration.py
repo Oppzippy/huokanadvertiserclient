@@ -5,19 +5,22 @@ from rx.subject.behaviorsubject import BehaviorSubject
 
 class Configuration:
     def __init__(self, file_path: str):
+        self._modified_settings = {}
+        self._initialized = False
         self._file_path = file_path
         self._create_config_file()
-        self._modified_settings = {}
         self.api_base_url = "http://localhost:5001"
 
         self.api_key = BehaviorSubject(None)
-        self.api_key.subscribe(on_next=lambda api_key: self._set("apiKey", api_key))
         self.wow_path = BehaviorSubject(
             "C:\\Program Files (x86)\\World of Warcraft\\_retail_"
         )
+        self._load()
+
+        self.api_key.subscribe(on_next=lambda api_key: self._set("apiKey", api_key))
         self.wow_path.subscribe(on_next=lambda wow_path: self._set("wowPath", wow_path))
 
-        self._load()
+        self._initialized = True
 
     def _create_config_file(self):
         path = Path(self._file_path)
@@ -29,6 +32,8 @@ class Configuration:
             self._modified_settings[key] = value
         elif key in self._modified_settings:
             del self._modified_settings[key]
+        if self._initialized:
+            self._save()
 
     def _load(self) -> None:
         with open(self._file_path, "r") as f:
@@ -42,6 +47,6 @@ class Configuration:
                 # TODO ask user if they want to wipe the file
                 pass
 
-    def save(self) -> None:
+    def _save(self) -> None:
         with open(self._file_path, "w") as f:
             f.write(json.dumps(self._modified_settings))

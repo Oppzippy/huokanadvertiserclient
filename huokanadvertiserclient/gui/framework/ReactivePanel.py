@@ -17,10 +17,20 @@ class ReactivePanel(wx.Panel):
         disposable = observable.subscribe(on_next=set_func)
         self._observable_disposables.append(disposable)
 
-    def bind_observer(self, observer: Observer, window: wx.Window, event) -> None:
-        window.Bind(event, lambda new_value: observer.on_next(new_value))
+    def bind_observer(
+        self,
+        observer: Observer,
+        window: wx.Window,
+        event: wx.PyEventBinder,
+        get_new_value: Callable[[], Any] = None,
+    ) -> None:
+        window.Bind(
+            event,
+            lambda new_value: observer.on_next(
+                new_value if get_new_value is None else get_new_value()
+            ),
+        )
 
     def _dispose_observables(self, _):
         for disposable in self._observable_disposables:
             disposable.dispose()
-        return super().Destroy()

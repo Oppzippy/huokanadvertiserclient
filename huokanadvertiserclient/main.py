@@ -13,7 +13,6 @@ else:
     config_dir = Path(environ["HOME"]).joinpath(".config")
 
 config = Configuration(config_dir.joinpath("huokanclient", "config.json").__str__())
-config.save()
 
 app = wx.App()
 

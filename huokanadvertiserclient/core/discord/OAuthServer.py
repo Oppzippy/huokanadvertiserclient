@@ -11,10 +11,10 @@ from huokan_client import Client
 class OAuthServer:
     def __init__(self, port: int, api_client: Client, api_key_subject: Subject) -> None:
         self._server = ThreadingHTTPServer(
-            ("127.0.0.1", port),
+            ("localhost", port),
             oauth_handler_with_return_url(
                 api_client,
-                f"http://127.0.0.1:{port}",
+                f"http://localhost:{port}",
                 api_key_subject,
             ),
         )
