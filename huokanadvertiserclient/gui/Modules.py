@@ -1,7 +1,9 @@
 import wx
+import rx
 from huokanadvertiserclient.config.Configuration import Configuration
 from huokanadvertiserclient.gui.AddOn import AddOn
 from huokanadvertiserclient.gui.Settings import Settings
+from huokanadvertiserclient.gui.Version import Version
 
 
 class Modules(wx.Panel):
@@ -18,6 +20,7 @@ class Modules(wx.Panel):
         #     GuildBank(self._notebook, ),
         #     "Guild Bank",
         # )
+        self._notebook.AddPage(Version(self._notebook, rx.empty()), "Version")
 
         sizer.Add(self._notebook, flag=wx.EXPAND)
         self.SetSizer(sizer)
