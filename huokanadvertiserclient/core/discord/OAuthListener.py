@@ -1,4 +1,4 @@
-from huokan_client import Client
+from huokanapiclient.client import Client
 from huokanadvertiserclient.config.Configuration import Configuration
 from huokanadvertiserclient.core.discord.OAuthServer import OAuthServer
 

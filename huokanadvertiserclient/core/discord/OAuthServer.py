@@ -5,7 +5,8 @@ from rx.subject.subject import Subject
 from huokanadvertiserclient.core.discord.OAuthHandler import (
     oauth_handler_with_return_url,
 )
-from huokan_client import Client
+
+from huokanapiclient.client import Client
 
 
 class OAuthServer:

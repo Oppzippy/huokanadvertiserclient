@@ -27,7 +27,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "attrs"
 version = "21.3.0"
 description = "Classes Without Boilerplate"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -145,6 +145,26 @@ sniffio = "*"
 brotli = ["brotlicffi", "brotli"]
 cli = ["click (>=8.0.0,<9.0.0)", "rich (>=10.0.0,<11.0.0)", "pygments (>=2.0.0,<3.0.0)"]
 http2 = ["h2 (>=3,<5)"]
+
+[[package]]
+name = "huokanapiclient"
+version = "0.0.16"
+description = "A client library for accessing Huokan"
+category = "main"
+optional = false
+python-versions = "^3.6"
+develop = false
+
+[package.dependencies]
+attrs = ">=20.1.0,<22.0.0"
+httpx = ">=0.15.4,<0.22.0"
+python-dateutil = "^2.8.0"
+
+[package.source]
+type = "git"
+url = "git@github.com:Huokan/huokanapiclient-python.git"
+reference = "master"
+resolved_reference = "4d03852b7909204d24ee88bdea2caef30bf0490f"
 
 [[package]]
 name = "idna"
@@ -358,7 +378,7 @@ six = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a527939553660151234eda1b5788b8895a9fe7b6618839c698f64fb80938b4f8"
+content-hash = "6077764ff3e951787ba3e0489e7d6c6cc63e49713007ba32b7abc395f8f91cab"
 
 [metadata.files]
 anyio = [
@@ -405,6 +425,7 @@ httpx = [
     {file = "httpx-0.21.1-py3-none-any.whl", hash = "sha256:208e5ef2ad4d105213463cfd541898ed9d11851b346473539a8425e644bb7c66"},
     {file = "httpx-0.21.1.tar.gz", hash = "sha256:02af20df486b78892a614a7ccd4e4e86a5409ec4981ab0e422c579a887acad83"},
 ]
+huokanapiclient = []
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
     {file = "idna-3.3.tar.gz", hash = "sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d"},

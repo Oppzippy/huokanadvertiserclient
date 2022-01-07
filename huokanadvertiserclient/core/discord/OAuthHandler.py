@@ -1,8 +1,8 @@
 import re
 from http.server import BaseHTTPRequestHandler
 from typing import Callable, Tuple
-from huokan_client import Client
-from huokan_client.api.discord_authorization import authorize
+from huokanapiclient.client import Client
+from huokanapiclient.api.discord_authorization import authorize
 from rx.subject.subject import Subject
 import socketserver
 
