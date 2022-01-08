@@ -33,3 +33,4 @@ class MainPanel(ReactivePanel):
             self._modules = Modules(self, self._config)
             self._sizer.Add(self._modules, proportion=1, flag=wx.EXPAND)
         self.Layout()
+        self.Refresh()
