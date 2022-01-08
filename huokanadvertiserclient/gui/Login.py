@@ -13,10 +13,10 @@ class Login(wx.Panel):
 
         sizer = wx.BoxSizer(wx.VERTICAL)
 
-        self._login_button = wx.Button(parent=self, label="Log in with Discord")
+        self._login_button = wx.Button(self, label="Log in with Discord")
         self._login_button.Bind(wx.EVT_BUTTON, self._open_login_page)
 
-        sizer.Add(self._login_button, flag=wx.EXPAND)
+        sizer.Add(self._login_button, proportion=1, flag=wx.EXPAND)
         self.SetSizer(sizer)
 
         self._server = OAuthListener(config)

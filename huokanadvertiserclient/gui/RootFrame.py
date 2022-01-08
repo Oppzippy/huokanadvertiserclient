@@ -29,10 +29,10 @@ class RootFrame(wx.Frame):
 
         if api_key is None:
             self._login = Login(self, self._config)
-            sizer.Add(self._login, flag=wx.EXPAND)
+            sizer.Add(self._login, proportion=1, flag=wx.EXPAND)
         else:
             self._modules = Modules(self, self._config)
-            sizer.Add(self._modules, flag=wx.EXPAND)
+            sizer.Add(self._modules, proportion=1, flag=wx.EXPAND)
         self.SetSizer(sizer)
 
     def _on_minimize(self, _) -> None:
