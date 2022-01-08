@@ -9,12 +9,14 @@ class ReactivePanel(wx.Panel):
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
         self._observable_disposables: List[Disposable] = []
-        self.Bind(wx.EVT_WINDOW_DESTROY, self._dispose_observables)
+        self.Bind(wx.EVT_WINDOW_DESTROY, self._dispose_observables, self)
 
     def bind_observable(
         self, observable: Observable, set_func: Callable[[Any], None]
     ) -> None:
-        disposable = observable.subscribe(on_next=set_func)
+        disposable = observable.subscribe(
+            on_next=lambda event: wx.CallAfter(set_func, event)
+        )
         self._observable_disposables.append(disposable)
 
     def bind_observer(

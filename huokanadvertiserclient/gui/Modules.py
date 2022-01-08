@@ -12,9 +12,8 @@ class Modules(wx.Panel):
 
         sizer = wx.BoxSizer(wx.VERTICAL)
         self._notebook = wx.Notebook(self)
-        self._settings = Settings(self._notebook, config)
 
-        self._notebook.AddPage(self._settings, "Settings")
+        self._notebook.AddPage(Settings(self._notebook, config), "Settings")
         self._notebook.AddPage(AddOn(self._notebook, config.wow_path), "AddOn")
         # self._notebook.AddPage(
         #     GuildBank(self._notebook, ),
@@ -22,5 +21,5 @@ class Modules(wx.Panel):
         # )
         self._notebook.AddPage(Version(self._notebook, rx.empty()), "Version")
 
-        sizer.Add(self._notebook, flag=wx.EXPAND)
+        sizer.Add(self._notebook, proportion=1, flag=wx.EXPAND)
         self.SetSizer(sizer)
