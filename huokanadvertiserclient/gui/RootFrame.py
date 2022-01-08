@@ -13,9 +13,10 @@ class RootFrame(wx.Frame):
         self._login: Union[Login, None] = None
         self._modules: Union[Modules, None] = None
         config.api_key.subscribe(on_next=self._on_api_key_change)
+        self.Bind(wx.EVT_ICONIZE, self._on_minimize)
+        self.Bind(wx.EVT_WINDOW_DESTROY, self._on_destroy)
 
         self._system_tray_icon = SystemTrayIcon(self)
-        self.Bind(wx.EVT_ICONIZE, self._on_minimize)
 
     def _on_api_key_change(self, api_key: Union[str, None]):
         if self._login is not None and api_key is None:
@@ -37,3 +38,6 @@ class RootFrame(wx.Frame):
     def _on_minimize(self, _) -> None:
         if self.IsIconized():
             self.Hide()
+
+    def _on_destroy(self, _) -> None:
+        self._system_tray_icon.Destroy()
