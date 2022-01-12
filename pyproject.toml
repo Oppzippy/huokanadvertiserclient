@@ -11,6 +11,8 @@ Rx = "^3.2.0"
 httpx = "^0.21.1"
 python-dateutil = "^2.8.2"
 huokanapiclient = { git = "git@github.com:Huokan/huokanapiclient-python.git" }
+watchdog = "^2.1.6"
+SLPP = "^1.2.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

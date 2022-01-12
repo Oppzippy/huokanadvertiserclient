@@ -10,6 +10,7 @@ class Configuration:
         self._file_path = file_path
         self._create_config_file()
         self.api_base_url = "http://localhost:5001"
+        self.organization_id = "f10e48bb-b5bd-436f-8750-865df4e2fec6"  # TODO
 
         self.api_key = BehaviorSubject(None)
         self.wow_path = BehaviorSubject(
