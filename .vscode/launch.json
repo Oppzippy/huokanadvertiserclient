@@ -9,7 +9,11 @@
 			"type": "python",
 			"request": "launch",
 			"program": "huokanadvertiserclient/main.py",
-			"console": "integratedTerminal"
+			"console": "integratedTerminal",
+			"env": {
+				"HUOKAN_ORGANIZATION_ID": "f10e48bb-b5bd-436f-8750-865df4e2fec6",
+				"HUOKAN_API_BASE_URL": "http://localhost:5001"
+			}
 		}
 	]
 }

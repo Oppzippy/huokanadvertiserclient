@@ -4,7 +4,7 @@ from huokanapiclient.client import AuthenticatedClient
 import wx
 from huokanadvertiserclient.core.Core import Core
 from huokanadvertiserclient.gui.RootFrame import RootFrame
-from huokanadvertiserclient.config.Configuration import Configuration
+from huokanadvertiserclient.state.State import State
 from pathlib import Path
 
 config_dir: Path
@@ -15,7 +15,7 @@ elif "XDG_CONFIG_HOME" in environ:
 else:
     config_dir = Path(environ["HOME"]).joinpath(".config")
 
-config = Configuration(config_dir.joinpath("huokanclient", "config.json").__str__())
+config = State(config_dir.joinpath("huokanclient", "config.json").__str__())
 
 core: Union[Core, None] = None
 
@@ -30,7 +30,7 @@ def on_api_key_update(api_key: str):
         core = Core(
             config,
             AuthenticatedClient(
-                config.api_base_url,
+                config.api_base_url.value,
                 api_key,
                 headers={"User-Agent": "huokanapiclient"},
                 timeout=10,

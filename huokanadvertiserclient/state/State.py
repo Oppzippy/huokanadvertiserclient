@@ -1,23 +1,33 @@
 import json
+import os
 from pathlib import Path
 from rx.subject.behaviorsubject import BehaviorSubject
+from rx.subject.subject import Subject
 
 
-class Configuration:
+class State:
     def __init__(self, file_path: str):
         self._modified_settings = {}
         self._initialized = False
         self._file_path = file_path
         self._create_config_file()
-        self.api_base_url = "http://localhost:5001"
-        self.organization_id = "f10e48bb-b5bd-436f-8750-865df4e2fec6"  # TODO
 
+        # State
         self.api_key = BehaviorSubject(None)
+        self.api_base_url = BehaviorSubject(
+            os.environ.get("HUOKAN_API_BASE_URL", "https://huokan.oppzippy.com/v1")
+        )
+        self.deposit_log_upload_status_code = Subject()
+
+        # Config
+        self.organization_id = BehaviorSubject(
+            os.environ.get("HUOKAN_ORGANIZATION_ID", "TODO production organization id")
+        )
         self.wow_path = BehaviorSubject(
             "C:\\Program Files (x86)\\World of Warcraft\\_retail_"
         )
-        self._load()
 
+        self._load()
         self.api_key.subscribe(on_next=lambda api_key: self._set("apiKey", api_key))
         self.wow_path.subscribe(on_next=lambda wow_path: self._set("wowPath", wow_path))
 
