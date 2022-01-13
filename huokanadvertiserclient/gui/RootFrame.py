@@ -2,6 +2,7 @@ import wx
 
 from huokanadvertiserclient.gui.MainPanel import MainPanel
 from huokanadvertiserclient.gui.SystemTrayIcon import SystemTrayIcon
+from huokanadvertiserclient.resources import get_resource_path
 from huokanadvertiserclient.state.State import State
 
 
@@ -10,6 +11,7 @@ class RootFrame(wx.Frame):
         super().__init__(parent=None, title="Huokan Client")
         self._state = state
         self._system_tray_icon = SystemTrayIcon(self)
+        self.SetIcon(wx.Icon(get_resource_path("huokan.ico")))
 
         sizer = wx.BoxSizer(wx.VERTICAL)
         self._main_panel = MainPanel(self, state)

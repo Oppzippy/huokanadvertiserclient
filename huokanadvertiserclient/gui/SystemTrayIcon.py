@@ -1,12 +1,14 @@
 import wx
 import wx.adv
 
+from huokanadvertiserclient.resources import get_resource_path
+
 
 class SystemTrayIcon(wx.adv.TaskBarIcon):
     def __init__(self, rootFrame: wx.Frame):
         super().__init__()
         self._frame = rootFrame
-        self.SetIcon(wx.Icon())
+        self.SetIcon(wx.Icon(get_resource_path("huokan.ico")))
         self.Bind(wx.adv.EVT_TASKBAR_LEFT_DCLICK, self._show_frame)
 
     def _show_frame(self, _) -> None:
