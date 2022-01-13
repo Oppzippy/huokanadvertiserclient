@@ -1,10 +1,11 @@
 import re
 from typing import Dict, List, Union
+
 from slpp import slpp
+
 from huokanadvertiserclient.core.depositlog.parser.DepositLogParserException import (
     DepositLogParserException,
 )
-
 
 _deposit_log_re = re.compile(
     "^HuokanAdvertiserToolsDepositLog = (\\{.*^\\})",

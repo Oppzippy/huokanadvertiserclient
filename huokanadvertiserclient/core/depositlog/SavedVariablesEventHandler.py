@@ -1,4 +1,6 @@
+from pathlib import Path
 from typing import Union
+
 from rx.core.typing import Observer
 from watchdog.events import (
     DirCreatedEvent,
@@ -7,7 +9,6 @@ from watchdog.events import (
     FileModifiedEvent,
     FileSystemEventHandler,
 )
-from pathlib import Path
 
 
 class SavedVariablesEventHandler(FileSystemEventHandler):

@@ -1,10 +1,11 @@
 import re
+import socketserver
 from http.server import BaseHTTPRequestHandler
 from typing import Callable, Tuple
-from huokanapiclient.client import Client
+
 from huokanapiclient.api.discord_authorization import authorize
+from huokanapiclient.client import Client
 from rx.subject.subject import Subject
-import socketserver
 
 
 class OAuthHandler(BaseHTTPRequestHandler):

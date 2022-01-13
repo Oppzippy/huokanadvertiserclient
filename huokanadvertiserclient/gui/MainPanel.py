@@ -1,9 +1,10 @@
 from typing import Union
-from huokanadvertiserclient.state.State import State
-from huokanadvertiserclient.gui.Login import Login
-from huokanadvertiserclient.gui.LoggedIn import LoggedIn
+
 from huokanadvertiserclient.gui.framework.PanelSwitcher import PanelSwitcher
 from huokanadvertiserclient.gui.framework.ReactivePanel import ReactivePanel
+from huokanadvertiserclient.gui.LoggedIn import LoggedIn
+from huokanadvertiserclient.gui.Login import Login
+from huokanadvertiserclient.state.State import State
 
 
 class MainPanel(ReactivePanel, PanelSwitcher):

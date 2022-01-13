@@ -1,10 +1,11 @@
-import wx
 import rx
-from huokanadvertiserclient.state.State import State
+import wx
+
 from huokanadvertiserclient.gui.AddOn import AddOn
 from huokanadvertiserclient.gui.DepositLogs import DepositLogs
 from huokanadvertiserclient.gui.Settings import Settings
 from huokanadvertiserclient.gui.Version import Version
+from huokanadvertiserclient.state.State import State
 
 
 class LoggedIn(wx.Panel):

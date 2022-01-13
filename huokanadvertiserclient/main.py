@@ -1,11 +1,13 @@
 from os import environ
+from pathlib import Path
 from typing import Union
-from huokanapiclient.client import AuthenticatedClient
+
 import wx
+from huokanapiclient.client import AuthenticatedClient
+
 from huokanadvertiserclient.core.Core import Core
 from huokanadvertiserclient.gui.RootFrame import RootFrame
 from huokanadvertiserclient.state.State import State
-from pathlib import Path
 
 config_dir: Path
 if "APPDATA" in environ:

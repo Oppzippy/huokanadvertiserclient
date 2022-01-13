@@ -1,4 +1,5 @@
 from typing import List, Union
+
 from huokanadvertiserclient.core.depositlog.parser.DictToDataClass import (
     DepositLog,
     parse_deposit_log_dict,

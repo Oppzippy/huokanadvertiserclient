@@ -1,7 +1,8 @@
 import wx
-from huokanadvertiserclient.state.State import State
+
 from huokanadvertiserclient.gui.MainPanel import MainPanel
 from huokanadvertiserclient.gui.SystemTrayIcon import SystemTrayIcon
+from huokanadvertiserclient.state.State import State
 
 
 class RootFrame(wx.Frame):

@@ -1,7 +1,9 @@
-from rx.subject.subject import Subject
-import wx
 from pathlib import Path
+
+import wx
 from rx.core.observable.observable import Observable
+from rx.subject.subject import Subject
+
 from huokanadvertiserclient.gui.framework.ReactivePanel import ReactivePanel
 
 

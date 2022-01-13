@@ -1,6 +1,7 @@
 from huokanapiclient.client import AuthenticatedClient
-from huokanadvertiserclient.state.State import State
+
 from huokanadvertiserclient.core.depositlog.DepositLogWatcher import DepositLogWatcher
+from huokanadvertiserclient.state.State import State
 
 
 class Core:

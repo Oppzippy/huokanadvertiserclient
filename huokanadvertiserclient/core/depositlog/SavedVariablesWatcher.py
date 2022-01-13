@@ -1,7 +1,9 @@
 from typing import Union
+
 from rx.core.observable.observable import Observable
 from rx.core.observer.observer import Observer
 from watchdog.observers import Observer as WatchdogObserver
+
 from huokanadvertiserclient.core.depositlog.SavedVariablesEventHandler import (
     SavedVariablesEventHandler,
 )

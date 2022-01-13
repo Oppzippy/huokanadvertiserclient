@@ -1,7 +1,6 @@
-import wx
 from datetime import datetime
 
-from rx.core.observable.observable import Observable
+import wx
 
 from huokanadvertiserclient.gui.framework.ReactivePanel import ReactivePanel
 from huokanadvertiserclient.state.State import State

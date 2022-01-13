@@ -1,8 +1,9 @@
 from typing import Any, Callable, List
-from rx.core.observer.observer import Observer
-from rx.core.observable.observable import Observable
-from rx.core.typing import Disposable
+
 import wx
+from rx.core.observable.observable import Observable
+from rx.core.observer.observer import Observer
+from rx.core.typing import Disposable
 
 
 class ReactivePanel(wx.Panel):

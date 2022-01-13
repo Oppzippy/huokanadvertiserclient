@@ -1,9 +1,9 @@
 import webbrowser
+
 import wx
+
+from huokanadvertiserclient.core.discord.OAuthListener import OAuthListener
 from huokanadvertiserclient.state.State import State
-from huokanadvertiserclient.core.discord.OAuthListener import (
-    OAuthListener,
-)
 
 
 class Login(wx.Panel):

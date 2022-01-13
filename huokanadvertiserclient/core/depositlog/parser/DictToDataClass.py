@@ -1,6 +1,7 @@
-from typing import Dict, List
-from attr import dataclass
 from datetime import datetime
+from typing import Dict, List
+
+from attr import dataclass
 
 
 @dataclass

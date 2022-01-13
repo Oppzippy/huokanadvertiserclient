@@ -1,12 +1,12 @@
 import threading
 from http.server import ThreadingHTTPServer
 
+from huokanapiclient.client import Client
 from rx.subject.subject import Subject
+
 from huokanadvertiserclient.core.discord.OAuthHandler import (
     oauth_handler_with_return_url,
 )
-
-from huokanapiclient.client import Client
 
 
 class OAuthServer:

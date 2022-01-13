@@ -1,6 +1,7 @@
-from huokanapiclient.models.deposit_log_entry import DepositLogEntry
-from huokanadvertiserclient.core.depositlog.parser.DictToDataClass import DepositLog
 from huokanapiclient.models.deposit_log import DepositLog as ApiDepositLog
+from huokanapiclient.models.deposit_log_entry import DepositLogEntry
+
+from huokanadvertiserclient.core.depositlog.parser.DictToDataClass import DepositLog
 
 
 def to_api_deposit_log(deposit_log: DepositLog) -> ApiDepositLog:

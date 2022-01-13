@@ -1,8 +1,8 @@
-from pathlib import Path
-import wx
 import re
+from pathlib import Path
 from typing import Union
 
+import wx
 from rx.core.observable.observable import Observable
 
 from huokanadvertiserclient.gui.framework.ReactivePanel import ReactivePanel
