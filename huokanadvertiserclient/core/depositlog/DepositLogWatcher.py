@@ -1,4 +1,5 @@
 import logging
+from threading import Lock
 from pathlib import Path
 
 from huokanapiclient.api.deposit_logs import import_deposit_log
@@ -18,6 +19,7 @@ class DepositLogWatcher:
     def __init__(self, state: State, api_client: AuthenticatedClient) -> None:
         self._api_client = api_client
         self._state = state
+        self._lock = Lock()
         self._subject = Subject()
         self._watcher = SavedVariablesWatcher(state.wow_path, self._subject)
         self._subject.subscribe(on_next=self.upload_log_from_file)
@@ -27,30 +29,33 @@ class DepositLogWatcher:
         deposit_logs = parse_deposit_log(content)
         if deposit_logs is None:
             return
-        try:
-            for log in deposit_logs:
-                guilds = get_guilds.sync_detailed(
-                    self._state.organization_id.value,
-                    client=self._api_client,
-                    name=log.guild_name,
-                    realm=log.guild_realm,
-                )
-                if guilds.parsed:
-                    guild = guilds.parsed.guilds[0]
-                    upload_response = import_deposit_log.sync_detailed(
+        # Don't allow multiple calls of this function to send HTTP requests to the server at the same time
+        # to ensure the server won't ever get spammed with requests.
+        with self._lock:
+            try:
+                for log in deposit_logs:
+                    guilds = get_guilds.sync_detailed(
                         self._state.organization_id.value,
-                        guild.id,
                         client=self._api_client,
-                        json_body=to_api_deposit_log(log),
+                        name=log.guild_name,
+                        realm=log.guild_realm,
                     )
-                    self._state.deposit_log_upload_status_code.on_next(
-                        upload_response.status_code
-                    )
-                else:
-                    logging.info("failed to parse response")
-                    self._state.deposit_log_upload_status_code.on_next(None)
-        except:
-            self._state.deposit_log_upload_status_code.on_next(None)
+                    if guilds.parsed:
+                        guild = guilds.parsed.guilds[0]
+                        upload_response = import_deposit_log.sync_detailed(
+                            self._state.organization_id.value,
+                            guild.id,
+                            client=self._api_client,
+                            json_body=to_api_deposit_log(log),
+                        )
+                        self._state.deposit_log_upload_status_code.on_next(
+                            upload_response.status_code
+                        )
+                    else:
+                        logging.info("failed to parse response")
+                        self._state.deposit_log_upload_status_code.on_next(None)
+            except:
+                self._state.deposit_log_upload_status_code.on_next(None)
 
     def destroy(self) -> None:
         self._watcher.destroy()
