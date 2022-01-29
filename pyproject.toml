@@ -13,6 +13,7 @@ python-dateutil = "^2.8.2"
 huokanapiclient = { git = "git@github.com:Huokan/huokanapiclient-python.git" }
 watchdog = "^2.1.6"
 SLPP = "^1.2.3"
+sentry-sdk = "^1.5.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
