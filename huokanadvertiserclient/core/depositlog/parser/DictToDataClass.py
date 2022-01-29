@@ -48,11 +48,11 @@ def _parse_deposit_log(log: dict) -> DepositLog:
     )
 
 
-def _time_elapsed_to_datetime(time_elapsed: Dict, since: datetime) -> datetime:
+def _time_elapsed_to_datetime(time_elapsed: Dict, until: datetime) -> datetime:
     delta = relativedelta(
         years=time_elapsed["years"],
         months=time_elapsed["months"],
         days=time_elapsed["days"],
         hours=time_elapsed["hours"],
     )
-    return since + delta
+    return until - delta
