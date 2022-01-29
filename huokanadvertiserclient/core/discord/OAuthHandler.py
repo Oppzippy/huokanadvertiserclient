@@ -1,10 +1,13 @@
+import logging
 import re
 import socketserver
 from http.server import BaseHTTPRequestHandler
-from typing import Callable, Tuple
+from typing import Callable, Tuple, Union
 
 from huokanapiclient.api.discord_authorization import authorize
 from huokanapiclient.client import Client
+from huokanapiclient.models.authorization import Authorization
+from huokanapiclient.types import Response
 from rx.subject.subject import Subject
 
 
@@ -26,22 +29,31 @@ class OAuthHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         code = re.findall("[\\?&]code=([^\\?&]+)", self.path)
         if len(code) >= 1:
-            response = authorize.sync_detailed(
-                client=self._api_client,
-                code=code[0],
-                redirect_url=self._return_url,
-            )
-            if response.parsed is not None:
-                self.send_response(200)
-                self.end_headers()
-                self.wfile.write(b"Logged in. You can close this tab.")
-            else:
+            response: Union[Response[Authorization], None] = None
+            try:
+                response = authorize.sync_detailed(
+                    client=self._api_client,
+                    code=code[0],
+                    redirect_url=self._return_url,
+                )
+                if response.parsed is not None:
+                    self.send_response(200)
+                    self.end_headers()
+                    self.wfile.write(b"Logged in. You can close this tab.")
+                else:
+                    self.send_response(500)
+                    self.end_headers()
+                    self.wfile.write(b"Login failed.")
+            except:
                 self.send_response(500)
                 self.end_headers()
                 self.wfile.write(b"Login failed.")
+                logging.exception("Login failed")
 
             self._api_key_subject.on_next(
-                response.parsed.api_key if response.parsed is not None else None
+                response.parsed.api_key
+                if response is not None and response.parsed is not None
+                else None
             )
         else:
             self.send_response(400)

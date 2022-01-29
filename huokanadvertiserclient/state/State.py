@@ -18,6 +18,7 @@ class State:
         self.api_base_url = BehaviorSubject(
             os.environ.get("HUOKAN_API_BASE_URL", "https://huokan.oppzippy.com/v1")
         )
+        self.api_client = BehaviorSubject(None)
         self.deposit_log_upload_status_code = Subject()
 
         # Config
